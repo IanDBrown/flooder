@@ -1,0 +1,77 @@
+body {
+  overflow-x: hidden;
+  margin: 0;
+  background-color: gray;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.homepage{
+  background-color: gray;
+}
+
+
+
+@media screen and (max-width: 600px){
+  .homepage-box{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .current-box{
+    margin-top: 50px;
+    height: 200px;
+  }
+
+  .current-box h1{
+    padding: 0;
+    font-size: 5em;
+    margin: 0%;
+  }
+
+  .current-box h3{
+    padding-top: 7%;
+    margin-bottom: 0%;
+  }
+
+  .current-box h4{
+    margin: 0%;
+  }
+
+  .hourly-box{
+    display: flex;
+    height: 100px;
+    overflow-x:scroll;
+    white-space: nowrap;
+  }
+
+  .hourly-box::-webkit-scrollbar{
+    display: none;
+  }
+
+  .hour-box{
+    height: 80%;
+    min-width: 60px;
+    display: inline-block;
+    border: solid black 1px;
+  }
+  
+  .hour-box p{
+    margin-top: 0;
+    margin-bottom: 15%;
+
+  }
+  .weekly-box{
+    height: 400px;
+  }
+
+  .day-box{
+    height: 7%;
+    border: solid black 1px;
+    margin-bottom: 2%;
+  }
+}

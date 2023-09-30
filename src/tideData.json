@@ -1,0 +1,206 @@
+{
+    "disclaimer": "NOT SUITABLE FOR NAVIGATIONAL PURPOSES. Marea API does not warrant that the provided data will be free from errors or omissions. Provided data are NOT suitable for usage where someone could be harmed or suffer any damage.",
+    "status": 200,
+    "latitude": 39.45270256808257,
+    "longitude": -75.65501504219846,
+    "origin": {
+      "latitude": 39.375,
+      "longitude": -75.4375,
+      "distance": 20.623288,
+      "unit": "km"
+    },
+    "datums": {
+      "LAT": -1.265,
+      "HAT": 1.334,
+      "MLLW": -0.829,
+      "MHHW": 0.888,
+      "MHW": 0.795,
+      "MLW": -0.802,
+      "MTL": -0.004,
+      "DTL": 0.029,
+      "GT": 1.717,
+      "MN": 1.596,
+      "DHQ": 0.093,
+      "DLQ": 0.027,
+      "MSL": 0
+    },
+    "timestamp": 1692737170,
+    "datetime": "2023-08-22T20:46:10+00:00",
+    "unit": "m",
+    "timezone": "UTC",
+    "datum": "MSL",
+    "extremes": [
+      {
+        "timestamp": 1692750252,
+        "height": -0.6223758449,
+        "state": "LOW TIDE",
+        "datetime": "2023-08-23T00:24:12+00:00"
+      },
+      {
+        "timestamp": 1692771901,
+        "height": 0.5599602568,
+        "state": "HIGH TIDE",
+        "datetime": "2023-08-23T06:25:01+00:00"
+      },
+      {
+        "timestamp": 1692794356,
+        "height": -0.699369877,
+        "state": "LOW TIDE",
+        "datetime": "2023-08-23T12:39:16+00:00"
+      },
+      {
+        "timestamp": 1692817055,
+        "height": 0.7091884477,
+        "state": "HIGH TIDE",
+        "datetime": "2023-08-23T18:57:35+00:00"
+      }
+    ],
+    "heights": [
+      {
+        "timestamp": 1692737170,
+        "height": 0.1270968309,
+        "state": "FALLING",
+        "datetime": "2023-08-22T20:46:10+00:00"
+      },
+      {
+        "timestamp": 1692740770,
+        "height": -0.1043810697,
+        "state": "FALLING",
+        "datetime": "2023-08-22T21:46:10+00:00"
+      },
+      {
+        "timestamp": 1692744370,
+        "height": -0.3493601545,
+        "state": "FALLING",
+        "datetime": "2023-08-22T22:46:10+00:00"
+      },
+      {
+        "timestamp": 1692747970,
+        "height": -0.570787047,
+        "state": "FALLING",
+        "datetime": "2023-08-22T23:46:10+00:00"
+      },
+      {
+        "timestamp": 1692751570,
+        "height": -0.603906832,
+        "state": "RISING",
+        "datetime": "2023-08-23T00:46:10+00:00"
+      },
+      {
+        "timestamp": 1692755170,
+        "height": -0.3904629334,
+        "state": "RISING",
+        "datetime": "2023-08-23T01:46:10+00:00"
+      },
+      {
+        "timestamp": 1692758770,
+        "height": -0.0897670081,
+        "state": "RISING",
+        "datetime": "2023-08-23T02:46:10+00:00"
+      },
+      {
+        "timestamp": 1692762370,
+        "height": 0.1361607439,
+        "state": "RISING",
+        "datetime": "2023-08-23T03:46:10+00:00"
+      },
+      {
+        "timestamp": 1692765970,
+        "height": 0.3228046313,
+        "state": "RISING",
+        "datetime": "2023-08-23T04:46:10+00:00"
+      },
+      {
+        "timestamp": 1692769570,
+        "height": 0.5092035926,
+        "state": "RISING",
+        "datetime": "2023-08-23T05:46:10+00:00"
+      },
+      {
+        "timestamp": 1692773170,
+        "height": 0.5427652773,
+        "state": "FALLING",
+        "datetime": "2023-08-23T06:46:10+00:00"
+      },
+      {
+        "timestamp": 1692776770,
+        "height": 0.3287939079,
+        "state": "FALLING",
+        "datetime": "2023-08-23T07:46:10+00:00"
+      },
+      {
+        "timestamp": 1692780370,
+        "height": 0.0289049892,
+        "state": "FALLING",
+        "datetime": "2023-08-23T08:46:10+00:00"
+      },
+      {
+        "timestamp": 1692783970,
+        "height": -0.2008994627,
+        "state": "FALLING",
+        "datetime": "2023-08-23T09:46:10+00:00"
+      },
+      {
+        "timestamp": 1692787570,
+        "height": -0.4020953267,
+        "state": "FALLING",
+        "datetime": "2023-08-23T10:46:10+00:00"
+      },
+      {
+        "timestamp": 1692791170,
+        "height": -0.6105664973,
+        "state": "FALLING",
+        "datetime": "2023-08-23T11:46:10+00:00"
+      },
+      {
+        "timestamp": 1692794770,
+        "height": -0.6976320269,
+        "state": "RISING",
+        "datetime": "2023-08-23T12:46:10+00:00"
+      },
+      {
+        "timestamp": 1692798370,
+        "height": -0.533417742,
+        "state": "RISING",
+        "datetime": "2023-08-23T13:46:10+00:00"
+      },
+      {
+        "timestamp": 1692801970,
+        "height": -0.1985630818,
+        "state": "RISING",
+        "datetime": "2023-08-23T14:46:10+00:00"
+      },
+      {
+        "timestamp": 1692805570,
+        "height": 0.1039907087,
+        "state": "RISING",
+        "datetime": "2023-08-23T15:46:10+00:00"
+      },
+      {
+        "timestamp": 1692809170,
+        "height": 0.3263866703,
+        "state": "RISING",
+        "datetime": "2023-08-23T16:46:10+00:00"
+      },
+      {
+        "timestamp": 1692812770,
+        "height": 0.5508776967,
+        "state": "RISING",
+        "datetime": "2023-08-23T17:46:10+00:00"
+      },
+      {
+        "timestamp": 1692816370,
+        "height": 0.7042711526,
+        "state": "RISING",
+        "datetime": "2023-08-23T18:46:10+00:00"
+      },
+      {
+        "timestamp": 1692819970,
+        "height": 0.6216979918,
+        "state": "FALLING",
+        "datetime": "2023-08-23T19:46:10+00:00"
+      }
+    ],
+    "source": "FES2014",
+    "copyright": "©2023 Marea | Generated using AVISO+ Products. FES2014 was produced by Noveltis, Legos and CLS and distributed by Aviso+, with support from Cnes (https://www.aviso.altimetry.fr/)"
+  }
