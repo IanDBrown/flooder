@@ -1,7 +1,7 @@
 body {
   overflow-x: hidden;
   margin: 0;
-  background-color: gray;
+  background-color: #4b8fdd;
 }
 
 code {
@@ -10,7 +10,7 @@ code {
 }
 
 .homepage{
-  background-color: gray;
+  background-color: #4b8fdd;
 }
 
 
@@ -81,20 +81,24 @@ code {
   .extreme-box{
     position: relative;
     display: flex;
+    height: 55vh;
   }
   .tide-title{
     display: block;
     text-align: center;
     font-size: 1.6em;
+    border-bottom: 2px black solid;
   }
   .extremes{
     width: 44%;
   }
   .extremes-low{
     padding-right: 6%;
+    border-left: 1px black solid;
   }
   .extremes-high{
     padding-left: 6%;
+    border-right: 1px black solid;
   }
   .tide-data{
     width: 75%;
@@ -112,5 +116,24 @@ code {
     padding-bottom: 15%;
     margin: 0%;
     font-size: 1.4em;
+  }
+  .currentBox{
+    height: 25vh;
+    margin-top: 3%;
+    text-align: center;
+  }
+  .container{
+    margin: 0%;
+  }
+  .currentBox h2, h3{
+    margin-bottom: 1%;
+    margin-top: 1%;
+  }
+  .currentBox h1{
+    margin: auto;
+    width: 50%;
+    margin-bottom: 2%;
+    margin-top: 5%;
+    border-bottom: 2px solid black;
   }
 }
