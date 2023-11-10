@@ -74,4 +74,43 @@ code {
     border: solid black 1px;
     margin-bottom: 2%;
   }
+/* 
+  Holder CSS: delete when hourly is done
+*/
+
+  .extreme-box{
+    position: relative;
+    display: flex;
+  }
+  .tide-title{
+    display: block;
+    text-align: center;
+    font-size: 1.6em;
+  }
+  .extremes{
+    width: 44%;
+  }
+  .extremes-low{
+    padding-right: 6%;
+  }
+  .extremes-high{
+    padding-left: 6%;
+  }
+  .tide-data{
+    width: 75%;
+    margin: auto;
+  }
+
+  h4{
+    text-align: center;
+    margin-bottom: 1%;
+    font-size: .9em;
+  }
+  h5{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 15%;
+    margin: 0%;
+    font-size: 1.4em;
+  }
 }
