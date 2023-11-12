@@ -14,7 +14,8 @@ const FrontPageHolder = (props) => {
             setLoaded(true)
         }
         fetchTideData()
-    },[])
+    },[todaysDate])
+
     let highTide = [];
     let lowTide = [];
     let closestTide = [];
@@ -44,14 +45,21 @@ const FrontPageHolder = (props) => {
                         + " " + currentdate.getHours()
                         + ":" + (currentdate.getMinutes() < 10 ? "0"+ currentdate.getMinutes() : currentdate.getMinutes())
 
+
+        function UtcDate(date){
+            let givenDate = new Date(date)
+            let now_utc = Date.UTC(givenDate.getUTCFullYear(), givenDate.getUTCMonth(),
+                givenDate.getUTCDate(), givenDate.getUTCHours(),
+                givenDate.getUTCMinutes(), givenDate.getUTCSeconds());
+            return now_utc
+        }
         
         function findUpcomingTide(givenTime, tideType, height){
-            let currDate = new Date(datetime)
-            let givenDate = new Date(givenTime)
+            let currDate = UtcDate(datetime)
+            let givenDate = UtcDate(givenTime)
+            console.log(currDate, givenDate)
             if(currDate < givenDate && closestTide.length === 0){
-                closestTide[0] = miltaryToTwelve(givenTime)
-                closestTide[1] = height
-                closestTide[2] = tideType
+                [closestTide[0], closestTide[1], closestTide[3]] = [miltaryToTwelve(givenTime), height, tideType]
             }
         }
 
@@ -62,7 +70,6 @@ const FrontPageHolder = (props) => {
             tideObj["date"] = miltaryToTwelve(extreme.t)
             extreme.type === "L" ? lowTide.push(tideObj) : highTide.push(tideObj)
         })
-        console.log(highTide, lowTide)
     }
     if(!loaded){ return <p>Loading...</p>}
     else return (
