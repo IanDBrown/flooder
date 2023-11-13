@@ -81,7 +81,7 @@ code {
   .extreme-box{
     position: relative;
     display: flex;
-    height: 55vh;
+    overflow: visible;
   }
   .tide-title{
     display: block;
@@ -121,6 +121,9 @@ code {
     height: 25vh;
     margin-top: 3%;
     text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 40%;
   }
   .container{
     margin: 0%;
@@ -131,9 +134,13 @@ code {
   }
   .currentBox h1{
     margin: auto;
-    width: 50%;
+    width: 75%;
     margin-bottom: 2%;
     margin-top: 5%;
+    font-size: 1.6em;
     border-bottom: 2px solid black;
+  }
+  .prev-next-tide{
+    display: flex;
   }
 }
