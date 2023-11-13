@@ -13,7 +13,77 @@ code {
   background-color: #4b8fdd;
 }
 
+.container{
+  width: 50%;
+  margin: auto;
+}
 
+.prev-next-tide{
+  display: flex;
+}
+
+.currentBox{
+  margin-top: 3%;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 40%;
+}
+
+.currentBox h2, h3{
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+.currentBox h1{
+  margin: auto;
+  width: 75%;
+  margin-bottom: 2%;
+  margin-top: 5%;
+  font-size: 1.6em;
+  border-bottom: 2px solid black;
+}
+
+.extremes{
+  width: 44%;
+}
+.extremes-low{
+  padding-right: 6%;
+  border-left: 1px black solid;
+}
+.extremes-high{
+  padding-left: 6%;
+  border-right: 1px black solid;
+}
+
+h4{
+  text-align: center;
+  margin-bottom: 1%;
+  font-size: 1.1em;
+}
+h5{
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 15%;
+  margin: 0%;
+  font-size: 1.4em;
+}
+
+.extreme-box{
+  position: relative;
+  display: flex;
+  overflow: visible;
+}
+.tide-title{
+  display: block;
+  text-align: center;
+  font-size: 1.6em;
+  border-bottom: 2px black solid;
+}
+
+.tide-data{
+  width: 75%;
+  margin: auto;
+}
 
 @media screen and (max-width: 600px){
   .homepage-box{
@@ -21,7 +91,9 @@ code {
     margin: auto;
     text-align: center;
   }
-
+  .container{
+    width: 100%;
+  }
   .current-box{
     margin-top: 50px;
     height: 200px;
@@ -78,68 +150,17 @@ code {
   Holder CSS: delete when hourly is done
 */
 
-  .extreme-box{
-    position: relative;
-    display: flex;
-    overflow: visible;
-  }
-  .tide-title{
-    display: block;
-    text-align: center;
-    font-size: 1.6em;
-    border-bottom: 2px black solid;
-  }
-  .extremes{
-    width: 44%;
-  }
-  .extremes-low{
-    padding-right: 6%;
-    border-left: 1px black solid;
-  }
-  .extremes-high{
-    padding-left: 6%;
-    border-right: 1px black solid;
-  }
-  .tide-data{
-    width: 75%;
-    margin: auto;
-  }
-
   h4{
-    text-align: center;
-    margin-bottom: 1%;
     font-size: .9em;
   }
   h5{
-    text-align: center;
-    padding-top: 2%;
-    padding-bottom: 15%;
-    margin: 0%;
     font-size: 1.4em;
   }
-  .currentBox{
-    height: 25vh;
-    margin-top: 3%;
-    text-align: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    width: 40%;
-  }
+
   .container{
     margin: 0%;
   }
-  .currentBox h2, h3{
-    margin-bottom: 1%;
-    margin-top: 1%;
-  }
-  .currentBox h1{
-    margin: auto;
-    width: 75%;
-    margin-bottom: 2%;
-    margin-top: 5%;
-    font-size: 1.6em;
-    border-bottom: 2px solid black;
-  }
+
   .prev-next-tide{
     display: flex;
   }
