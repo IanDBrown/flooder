@@ -1,26 +1,17 @@
-import { useState,useEffect } from "react"
+import useFetch from "./useFetch"
 
-const FrontPageHolder = (props) => {
-    const [tideData, setTideData] = useState({})
-    const [loaded, setLoaded] = useState(false)
+const FrontPageHolder = () => {
     const date = new Date();
     let offset = -300;
     let todaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
-    useEffect(()=>{
-        const fetchTideData = async () =>{
-            await fetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${todaysDate}&range=72&station=8551910&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json`)
-            .then((res)=> res.json())
-            .then((data)=> setTideData(data))
-            setLoaded(true)
-        }
-        fetchTideData()
-    },[todaysDate])
+    const { loaded: predictionTideLoaded, data: tideData } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${todaysDate}&range=72&station=8551910&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json`)
+    const { loaded: currentTideLoaded, data: currentTideLevel } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=8551910&product=water_level&datum=MLLW&time_zone=gmt&units=english&application=DataAPI_Sample&format=json`)
 
-    let highTide = [];
-    let lowTide = [];
-    let upComingTide = [];
+    let highTide = []
+    let lowTide = []
+    let upComingTide = []
     let previousTide = []
-    if(loaded){
+    if(predictionTideLoaded && currentTideLoaded){
         function spliceTime(givenTime){
             let date = givenTime.slice(5, 10)
             let hour = givenTime.slice(10, 13)
@@ -75,11 +66,15 @@ const FrontPageHolder = (props) => {
             tideObj["date"] = miltaryToTwelve(extreme.t)
             extreme.type === "L" ? lowTide.push(tideObj) : highTide.push(tideObj)
         })
-        console.log(highTide)
     }
-    if(!loaded){ return <p>Loading...</p>}
+    console.log(currentTideLevel)
+    if(!predictionTideLoaded && !currentTideLoaded){ return <p>Loading...</p>}
     else return (
         <div className="container">
+            <div className="current-tide">
+                <h4 className="tide-title">Current Tide:</h4>
+                <h2>{currentTideLevel.data[0].v} ft.</h2>
+            </div>
             <div className="prev-next-tide">
                 <div className="currentBox previous-tide">
                     <h4 className="tide-title">Previous Tide:</h4>
