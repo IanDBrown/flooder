@@ -4,6 +4,7 @@
 import './index.css'
 import FrontPageHolder from './FrontPageHolder';
 import newTideData from './newTideData.json'
+import Header from './Header';
 
 const Homepage = () => {
     
@@ -12,6 +13,7 @@ const Homepage = () => {
             {/* <CurrentBox tideData = {tideJSON}/>
             <HourlyBox tideData = {tideJSON}/>
             <WeeklyBox/> */}
+            <Header/>
             <FrontPageHolder tideData = {newTideData}/>
         </div>
      );

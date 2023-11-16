@@ -4,6 +4,29 @@ body {
   background-color: #4b8fdd;
 }
 
+.navbar {
+  display: block;
+  align-items: center;
+  max-width: 450px;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  top: 0px;
+  left: 0px;
+  background-color: #0056b8;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom: 2px black solid;
+}
+
+.navbar h3{
+  text-align: center;
+  margin-top: auto;
+  color: white;
+  padding-top: 12px;
+  font-size: 2em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
