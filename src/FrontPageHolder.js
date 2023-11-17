@@ -1,3 +1,5 @@
+import ExtremeList from "./comps/ExtremeList";
+import PrevAndUpcomingTide from "./comps/PrevAndUpcomingTide";
 import useFetch from "./useFetch"
 
 const FrontPageHolder = () => {
@@ -68,7 +70,7 @@ const FrontPageHolder = () => {
         })
     }
     console.log(currentTideLevel)
-    if(!predictionTideLoaded && !currentTideLoaded){ return <p>Loading...</p>}
+    if(!predictionTideLoaded && !currentTideLoaded || lowTide.length ===0 || highTide.length ===0){ return <p>Loading...</p>}
     else return (
         <div className="container">
             <div className="current-tide">
@@ -76,46 +78,12 @@ const FrontPageHolder = () => {
                 <h2>{currentTideLevel.data[0].v} ft.</h2>
             </div>
             <div className="prev-next-tide">
-                <div className="currentBox previous-tide">
-                    <h4 className="tide-title">Previous Tide:</h4>
-                    <h1>{previousTide[2] === "H" ? "High Tide" : "Low Tide"}</h1>
-                    <h3>{previousTide[0]}</h3>
-                    <h2>{previousTide[1]} ft.</h2>
-                </div>
-                <div className="currentBox upcoming-tide">
-                    <h4 className="tide-title">Upcoming Tide:</h4>
-                    <h1>{upComingTide[2] === "H" ? "High Tide" : "Low Tide"}</h1>
-                    <h3>{upComingTide[0]}</h3>
-                    <h2>{upComingTide[1]} ft.</h2>
-                </div>
+                <PrevAndUpcomingTide tide = {previousTide} typeOfTide = {"Previous"}/>
+                <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"}/>
             </div>
             <div className="extreme-box">
-                <div className="extremes-high extremes">
-                    <h4 className="tide-title">High Tide:</h4>
-                    <div className="tide-data">
-                        {highTide.map((tide, n) => {
-                            return (
-                                <div key={n}>
-                                    <h4>{tide.date}</h4>
-                                    <h5>{tide.height} ft.</h5>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-                <div className="extremes-low extremes">
-                    <h4 className="tide-title">Low Tide:</h4>
-                    <div className="tide-data">
-                        {lowTide.map((tide, n) => {
-                            return (
-                                <div key={n} >
-                                    <h4>{tide.date}</h4>
-                                    <h5>{tide.height} ft.</h5>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
+                <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
+                <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
             </div>
         </div>
     );

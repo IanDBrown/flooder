@@ -1,22 +1,23 @@
 body {
   overflow-x: hidden;
   margin: 0;
-  background-color: #4b8fdd;
+  background-color: #126dd4;
 }
 
 .navbar {
   display: block;
   align-items: center;
-  max-width: 450px;
-  width: 100%;
+  max-width: 488.5px;
+  width: 50%;
   height: 60px;
   margin: 0 auto;
   top: 0px;
   left: 0px;
   background-color: #0056b8;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-bottom: 2px black solid;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px black solid;
+  border-top: 0px;
 }
 
 .navbar h3{
@@ -32,13 +33,12 @@ code {
     monospace;
 }
 
-.homepage{
-  background-color: #4b8fdd;
-}
-
 .container{
   width: 50%;
+  max-width: 488.5px;
   margin: auto;
+  background-color: #4b8fdd;
+  border-radius: 5px;
 }
 
 .prev-next-tide{
@@ -56,9 +56,10 @@ code {
 .current-tide{
   width: 60%;
   margin: auto;
+  padding-top: 10px;
 }
 
-.current-tide h2{
+.current-tide h2, h4{
   text-align: center;
   margin-bottom: 1%;
   margin-top: 1%;
@@ -80,13 +81,17 @@ code {
 .extremes{
   width: 44%;
 }
-.extremes-low{
+.extremes-Low{
   padding-right: 6%;
   border-left: 1px black solid;
 }
-.extremes-high{
+.extremes-High{
   padding-left: 6%;
   border-right: 1px black solid;
+}
+
+.extreme-values{
+  padding-top: 15%;
 }
 
 h4{
@@ -96,8 +101,6 @@ h4{
 }
 h5{
   text-align: center;
-  padding-top: 2%;
-  padding-bottom: 15%;
   margin: 0%;
   font-size: 1.4em;
 }
@@ -106,6 +109,8 @@ h5{
   position: relative;
   display: flex;
   overflow: visible;
+  margin-top: 10%;
+  padding-bottom: 5%;
 }
 .tide-title{
   display: block;
@@ -120,6 +125,12 @@ h5{
 }
 
 @media screen and (max-width: 600px){
+  .navbar {
+    width: 99%;
+    border-left: 0px;
+    border-right: 0px;
+  }
+
   .homepage-box{
     width: 80%;
     margin: auto;
@@ -131,6 +142,7 @@ h5{
   .current-box{
     margin-top: 50px;
     height: 200px;
+
   }
 
   .current-box h1{
@@ -189,10 +201,6 @@ h5{
   }
   h5{
     font-size: 1.4em;
-  }
-
-  .container{
-    margin: 0%;
   }
 
   .prev-next-tide{
