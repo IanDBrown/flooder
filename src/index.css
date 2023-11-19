@@ -84,9 +84,8 @@ code {
   width: 75%;
   margin-bottom: 2%;
   margin-top: 5%;
-  font-size: 1.6em;
-  border-bottom: 1px solid black;
-  font-weight: normal;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .extremes{
@@ -132,7 +131,7 @@ h5{
   display: block;
   text-align: center;
   font-size: 1.6em;
-  border-bottom: 1px black solid;
+  border-bottom: 2px black solid;
 }
 
 .tide-data{
@@ -208,9 +207,6 @@ h5{
     border: solid black 1px;
     margin-bottom: 2%;
   }
-/* 
-  Holder CSS: delete when hourly is done
-*/
 
   h4{
     font-size: .9em;
