@@ -79,10 +79,15 @@ const FrontPageHolder = () => {
             <div className="prev-next-tide">
                 <PrevAndUpcomingTide tide = {previousTide} typeOfTide = {"Previous"}/>
                 <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"}/>
-            </div>
+            </div>            
             <div className="extreme-box">
                 <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
                 <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
+            </div>
+            <div className="button-div">
+                <h2>Was there water on the bridge?</h2>
+                <button>Yes</button>
+                <button>No</button>
             </div>
         </div>
     );
