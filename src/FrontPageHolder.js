@@ -2,6 +2,8 @@ import ExtremeList from "./comps/ExtremeList";
 import PrevAndUpcomingTide from "./comps/PrevAndUpcomingTide";
 import useFetch from "./useFetch"
 
+//Created database to store current, closest tide and if there is water on bridge (Yes/No)
+
 const FrontPageHolder = () => {
     const date = new Date();
     let offset = -300;
