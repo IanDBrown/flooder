@@ -1,22 +1,45 @@
 import ExtremeList from "./comps/ExtremeList";
 import PrevAndUpcomingTide from "./comps/PrevAndUpcomingTide";
 import useFetch from "./useFetch"
+import { useCallback } from "react";
+import {app} from './firebase-config';
+import { getFirestore } from '@firebase/firestore'
+import {addDoc, collection} from 'firebase/firestore'
 
 //Created database to store current, closest tide and if there is water on bridge (Yes/No)
 
 const FrontPageHolder = () => {
+    const db = getFirestore(app)
+
     const date = new Date();
     let offset = -300;
     let yesterdaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
     const { loaded: predictionTideLoaded, data: tideData } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${yesterdaysDate}&range=72&station=8551910&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json`)
     const { loaded: currentTideLoaded, data: currentTideLevel } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=8551910&product=water_level&datum=MLLW&time_zone=gmt&units=english&application=DataAPI_Sample&format=json`)
 
+    const writeDB = async (results) => {
+        const waterRef = collection(db, "flooder")
+        await addDoc(waterRef, { results })
+        //hide buttons after/show success pop up
+      }
+
+    const alertResults = useCallback((data) => {
+        console.log("alert")
+        writeDB(data)
+      }, []);     
+
+    function waterDatabase(){
+        //Create object to get stored
+        alertResults({tideLeve: 6})
+    }
     let highTide = []
     let lowTide = []
     let upComingTide = []
     let previousTide = []
 
     if(predictionTideLoaded && currentTideLoaded){
+
+
         function spliceTime(givenTime){
             let date = givenTime.slice(5, 10)
             let hour = givenTime.slice(10, 13)
@@ -88,8 +111,8 @@ const FrontPageHolder = () => {
             </div>
             <div className="button-div">
                 <h2>Was there water on the bridge?</h2>
-                <button>Yes</button>
-                <button>No</button>
+                <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
+                <button id = "NoWaterButton">No</button>
             </div>
         </div>
     );
