@@ -16,7 +16,7 @@ const FrontPageHolder = () => {
     let yesterdaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
     const { loaded: predictionTideLoaded, data: tideData } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${yesterdaysDate}&range=72&station=8551910&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json`)
     const { loaded: currentTideLoaded, data: currentTideLevel } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=8551910&product=water_level&datum=MLLW&time_zone=gmt&units=english&application=DataAPI_Sample&format=json`)
-
+    console.log(tideData)
     const writeDB = async (results) => {
         const waterRef = collection(db, "flooder")
         await addDoc(waterRef, { results })
@@ -38,8 +38,6 @@ const FrontPageHolder = () => {
     let previousTide = []
 
     if(predictionTideLoaded && currentTideLoaded){
-
-
         function spliceTime(givenTime){
             let date = givenTime.slice(5, 10)
             let hour = givenTime.slice(10, 13)
@@ -109,10 +107,14 @@ const FrontPageHolder = () => {
                 <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
                 <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
             </div>
-            <div className="button-div">
+            <div className="button-div report">
+                <button id = "reportWaterLevel" className="report-button">Report Water Level</button>
+                <button id = "reportGui" className="report-button" onClick={()=> waterDatabase()}>Show Popup</button>
+            </div>
+            <div className="button-div popup">
                 <h2>Was there water on the bridge?</h2>
                 <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
-                <button id = "NoWaterButton">No</button>
+                <button id = "NoWaterButton" >No</button>
             </div>
         </div>
     );

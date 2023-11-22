@@ -98,11 +98,19 @@ code {
   font-weight: normal;
 }
 
+.popup{
+  display: none;
+}
+
 .button-div button{
-  width: 50px;
-  height: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 25%;
+  height: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.report{
+
 }
 
 .extremes{
