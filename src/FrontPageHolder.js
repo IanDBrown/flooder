@@ -107,14 +107,18 @@ const FrontPageHolder = () => {
                 <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
                 <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
             </div>
-            <div className="button-div report">
-                <button id = "reportWaterLevel" className="report-button">Report Water Level</button>
-                <button id = "reportGui" className="report-button" onClick={()=> waterDatabase()}>Show Popup</button>
-            </div>
             <div className="button-div popup">
                 <h2>Was there water on the bridge?</h2>
                 <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
                 <button id = "NoWaterButton" >No</button>
+            </div>
+            <div className="footer">
+                <div>
+                    <button id = "reportWaterLevel" className="report-button">Report Water Level</button>
+                </div>
+                <div>
+                    <button id = "reportGui" className="report-button" onClick={()=> waterDatabase()}>Show Popup</button>
+                </div>
             </div>
         </div>
     );
