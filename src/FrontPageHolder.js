@@ -6,7 +6,7 @@ import {app} from './firebase-config';
 import { getFirestore } from '@firebase/firestore'
 import {addDoc, collection} from 'firebase/firestore'
 
-//Created database to store current, closest tide and if there is water on bridge (Yes/No)
+//Created SQL databse instead of firebase
 
 const FrontPageHolder = () => {
     const db = getFirestore(app)
