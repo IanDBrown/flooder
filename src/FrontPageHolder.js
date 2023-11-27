@@ -32,12 +32,17 @@ const FrontPageHolder = () => {
         //Create object to get stored
         alertResults({tideLeve: 6})
     }
+    function changePopup(display){
+        document.querySelector(".pop-up").style.display = display
+    }
+
     let highTide = []
     let lowTide = []
     let upComingTide = []
     let previousTide = []
 
     if(predictionTideLoaded && currentTideLoaded){
+
         function spliceTime(givenTime){
             let date = givenTime.slice(5, 10)
             let hour = givenTime.slice(10, 13)
@@ -95,6 +100,12 @@ const FrontPageHolder = () => {
     if(!predictionTideLoaded || !currentTideLoaded){ return <p>Loading...</p>}
     else return (
         <div className="container">
+            <div className="button-div pop-up">
+                <span className="close cursor" onClick={()=> changePopup("none")}>&times;</span>
+                <h2>Was there water on the bridge?</h2>
+                <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
+                <button id = "NoWaterButton">No</button>
+            </div>
             <div className="current-tide">
                 <h4 className="tide-title">Current Tide</h4>
                 <h2>{currentTideLevel.data[0].v} ft.</h2>
@@ -107,17 +118,12 @@ const FrontPageHolder = () => {
                 <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
                 <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
             </div>
-            <div className="button-div popup">
-                <h2>Was there water on the bridge?</h2>
-                <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
-                <button id = "NoWaterButton" >No</button>
-            </div>
             <div className="footer">
                 <div>
                     <button id = "reportWaterLevel" className="report-button">Report Water Level</button>
                 </div>
                 <div>
-                    <button id = "reportGui" className="report-button" onClick={()=> waterDatabase()}>Show Popup</button>
+                    <button id = "reportGui" className="report-button" onClick={()=> changePopup("block")}>Show Popup</button>
                 </div>
             </div>
         </div>

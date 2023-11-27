@@ -2,6 +2,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   background-color: #126dd4;
+  
 }
 
 .navbar, .footer{
@@ -110,7 +111,6 @@ code {
   font-weight: bold;
 }
 .button-div{
-  width: 100%;
   margin: auto;
   text-align: center;
   padding-bottom: 20px;
@@ -120,8 +120,31 @@ code {
   font-weight: normal;
 }
 
-.popup{
-  display: none;
+.pop-up{
+  position: absolute;
+  width: 30%;
+  height: 50vh;
+  background-color: gray;
+  display: block;
+  margin-left: 2%;
+  margin-top: 5vh;
+  z-index: 1;
+}
+
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .button-div button{
