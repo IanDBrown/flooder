@@ -34,6 +34,7 @@ const FrontPageHolder = () => {
     }
     function changePopup(display){
         document.querySelector(".pop-up").style.display = display
+        document.querySelector(".overlay").style.display = display
     }
 
     let highTide = []
@@ -100,6 +101,7 @@ const FrontPageHolder = () => {
     if(!predictionTideLoaded || !currentTideLoaded){ return <p>Loading...</p>}
     else return (
         <div className="container">
+            <div className="overlay"></div>
             <div className="button-div pop-up">
                 <span className="close cursor" onClick={()=> changePopup("none")}>&times;</span>
                 <h2>Was there water on the bridge?</h2>

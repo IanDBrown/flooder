@@ -2,7 +2,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   background-color: #126dd4;
-  
+
 }
 
 .navbar, .footer{
@@ -120,6 +120,19 @@ code {
   font-weight: normal;
 }
 
+.overlay {
+  display: block;
+  opacity: 1;
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
 .pop-up{
   position: absolute;
   width: 30%;
@@ -128,7 +141,7 @@ code {
   display: block;
   margin-left: 2%;
   margin-top: 5vh;
-  z-index: 1;
+  z-index: 101;
 }
 
 .close {
@@ -205,6 +218,13 @@ h4{
     width: 99%;
     border-left: 0px;
     border-right: 0px;
+  }
+
+  .pop-up{
+    padding-top: 30px;
+    width: 90%;
+    margin-left: 5%;
+    height: 40vh;
   }
 
   .homepage-box{
