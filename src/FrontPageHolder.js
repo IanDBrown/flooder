@@ -6,8 +6,6 @@ import {app} from './firebase-config';
 import { getFirestore } from '@firebase/firestore'
 import {addDoc, collection} from 'firebase/firestore'
 
-//Created SQL databse instead of firebase
-
 const FrontPageHolder = () => {
     const db = getFirestore(app)
 
