@@ -17,30 +17,53 @@ const FrontPageHolder = () => {
     const { loaded: predictionTideLoaded, data: tideData } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${yesterdaysDate}&range=72&station=8551910&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json`)
     const { loaded: currentTideLoaded, data: currentTideLevel } = useFetch(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=8551910&product=water_level&datum=MLLW&time_zone=gmt&units=english&application=DataAPI_Sample&format=json`)
     
-    const writeDB = async (results) => {
-        const waterRef = collection(db, "flooder")
-        await addDoc(waterRef, { results })
-        //hide buttons after/show success pop up
-      }
-
-    const alertResults = useCallback((data) => {
-        console.log("alert")
-        writeDB(data)
-      }, []);     
-
-    function waterDatabase(){
-        //Create object to get stored
-        alertResults({tideLeve: 6})
-    }
-    function changePopup(display){
-        document.querySelector(".pop-up").style.display = display
-        document.querySelector(".overlay").style.display = display
-    }
+    let datetime =  date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
+    + " " + date.getHours()
+    + ":" + (date.getMinutes() < 10 ? "0"+ date.getMinutes() : date.getMinutes())
 
     let highTide = []
     let lowTide = []
     let upComingTide = []
     let previousTide = []
+
+    function UtcDate(date){
+        let givenDate = new Date(date)
+        let now_utc = Date.UTC(givenDate.getUTCFullYear(), givenDate.getUTCMonth(),
+            givenDate.getUTCDate(), givenDate.getUTCHours(),
+            givenDate.getUTCMinutes(), givenDate.getUTCSeconds());
+        return now_utc
+    }
+
+    const writeDB = async (results) => {
+        const waterRef = collection(db, "waterOnBridge")
+        await addDoc(waterRef, results)
+        changePopup("none")
+        //hide buttons after/show success pop up
+      }
+
+    const alertResults = useCallback((data) => {
+        writeDB(data)
+      }, []);     
+
+    function closestExtreme(upComingExtreme, prevExtreme){
+        let currentTimeUTC = UtcDate(datetime)
+        let upComingExtremeDiff = Math.abs(currentTimeUTC - UtcDate(upComingExtreme))
+        let prevExtremeDiff = Math.abs(currentTimeUTC - UtcDate(prevExtreme))
+        if(upComingExtremeDiff > prevExtremeDiff){
+            return previousTide
+        }else{
+            return upComingTide
+        }
+    }
+
+    function waterDatabase(waterOnBridge){
+        let tideData = {"waterOnBridge": waterOnBridge, "date": datetime, "waterLevel": currentTideLevel.data[0].v, "closestTide": closestExtreme(upComingTide[3], previousTide[3])}
+        alertResults(tideData)
+    }
+    function changePopup(display){
+        document.querySelector(".pop-up").style.display = display
+        document.querySelector(".overlay").style.display = display
+    }
 
     if(predictionTideLoaded && currentTideLoaded){
 
@@ -63,29 +86,16 @@ const FrontPageHolder = () => {
             }
             return date + hour + minute + AmOrPm
         }
-
-        let datetime =  date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
-                        + " " + date.getHours()
-                        + ":" + (date.getMinutes() < 10 ? "0"+ date.getMinutes() : date.getMinutes())
-
-
-        function UtcDate(date){
-            let givenDate = new Date(date)
-            let now_utc = Date.UTC(givenDate.getUTCFullYear(), givenDate.getUTCMonth(),
-                givenDate.getUTCDate(), givenDate.getUTCHours(),
-                givenDate.getUTCMinutes(), givenDate.getUTCSeconds());
-            return now_utc
-        }
         
         function definePreviousTide(tide){
-            [previousTide[0], previousTide[1], previousTide[2]] = [miltaryToTwelve(tide.t), tide.v, tide.type]
+            [previousTide[0], previousTide[1], previousTide[2], previousTide[3]] = [miltaryToTwelve(tide.t), tide.v, tide.type, tide.t]
         }
 
         function findUpcomingTide(givenTime, tideType, height, index){
             let currDate = UtcDate(datetime)
             let givenDate = UtcDate(givenTime)
             if(currDate < givenDate && upComingTide.length === 0){
-                [upComingTide[0], upComingTide[1], upComingTide[2]] = [miltaryToTwelve(givenTime), height, tideType]
+                [upComingTide[0], upComingTide[1], upComingTide[2], upComingTide[3]] = [miltaryToTwelve(givenTime), height, tideType, givenTime]
                 definePreviousTide(tideData.predictions[index-1])
             } 
         }
@@ -105,8 +115,8 @@ const FrontPageHolder = () => {
             <div className="button-div pop-up">
                 <span className="close cursor" onClick={()=> changePopup("none")}>&times;</span>
                 <h2>Was there water on the bridge?</h2>
-                <button id = "YesWaterButton" onClick={()=> waterDatabase()}>Yes</button>
-                <button id = "NoWaterButton">No</button>
+                <button id = "YesWaterButton" onClick={()=> waterDatabase(true)}>Yes</button>
+                <button id = "NoWaterButton" onClick={()=> waterDatabase(false)}>No</button>
             </div>
             <div className="current-tide">
                 <h4 className="tide-title">Current Tide</h4>
