@@ -121,7 +121,7 @@ code {
 }
 
 .overlay {
-  display: block;
+  display: none;
   opacity: 1;
   background: rgba(0, 0, 0, .5);
   position: fixed;
@@ -138,7 +138,7 @@ code {
   width: 30%;
   height: 50vh;
   background-color: gray;
-  display: block;
+  display: none;
   margin-left: 2%;
   margin-top: 5vh;
   z-index: 101;
@@ -180,7 +180,8 @@ code {
 }
 
 .extreme-values{
-  padding-top: 15%;
+  width: 25%;
+  padding-bottom: 5%;
 }
 
 .extreme-values h4{
@@ -196,16 +197,24 @@ h4{
 
 .extreme-box{
   position: relative;
-  display: flex;
   overflow: visible;
-  margin-top: 10%;
   padding-bottom: 5%;
 }
+
+.tide-by-day{
+  margin-top: 5%;
+}
+
 .tide-title{
   display: block;
   text-align: center;
   font-size: 1.6em;
   border-bottom: 2px black solid;
+  margin-bottom: 5%;
+}
+
+.all-tide-day{
+  display: flex;
 }
 
 .tide-data{
@@ -224,7 +233,7 @@ h4{
     padding-top: 30px;
     width: 90%;
     margin-left: 5%;
-    height: 40vh;
+    height: 20vh;
   }
 
   .homepage-box{

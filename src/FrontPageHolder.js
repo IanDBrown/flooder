@@ -23,6 +23,7 @@ const FrontPageHolder = () => {
     let lowTide = []
     let upComingTide = []
     let previousTide = []
+    let tideByDay = []
 
     function UtcDate(date){
         let givenDate = new Date(date)
@@ -58,13 +59,13 @@ const FrontPageHolder = () => {
         let tideData = {"waterOnBridge": waterOnBridge, "date": datetime, "waterLevel": currentTideLevel.data[0].v, "closestTide": closestExtreme(upComingTide[3], previousTide[3])}
         alertResults(tideData)
     }
+
     function changePopup(display){
         document.querySelector(".pop-up").style.display = display
         document.querySelector(".overlay").style.display = display
     }
 
     if(predictionTideLoaded && currentTideLoaded){
-
         function spliceTime(givenTime){
             let date = givenTime.slice(5, 10)
             let hour = givenTime.slice(10, 13)
@@ -97,14 +98,35 @@ const FrontPageHolder = () => {
                 definePreviousTide(tideData.predictions[index-1])
             } 
         }
-
+        let prevDate = ""
+        let dateArray = []
         tideData.predictions.map((extreme, n) => {
             let tideObj = {}
             findUpcomingTide(extreme.t, extreme.type, extreme.v, n)
             tideObj["height"] = extreme.v
             tideObj["date"] = miltaryToTwelve(extreme.t)
+            tideObj["type"] = extreme.type
             extreme.type === "L" ? lowTide.push(tideObj) : highTide.push(tideObj)
+
+            let tideDate = tideObj["date"].split(" ")
+
+            if(prevDate === ""){
+                prevDate = tideDate[0]
+                dateArray.push(tideObj)
+            }
+            else if(prevDate === tideDate[0]){
+                dateArray.push(tideObj)
+                if(n === (tideData.predictions.length -1)){
+                    tideByDay.push(dateArray) 
+                }
+            }else if(prevDate !== tideDate[0]){
+                tideByDay.push(dateArray)
+                dateArray = []
+                dateArray.push(tideObj)
+                prevDate = tideDate[0]
+            }
         })
+        console.log(tideByDay)
     }
     if(!predictionTideLoaded || !currentTideLoaded){ return <p>Loading...</p>}
     else return (
@@ -124,16 +146,35 @@ const FrontPageHolder = () => {
                 <PrevAndUpcomingTide tide = {previousTide} typeOfTide = {"Previous"}/>
                 <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"}/>
             </div>            
-            <div className="extreme-box">
+            {/* <div className="extreme-box">
                 <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
                 <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
+            </div> */}
+            <div className="extreme-box">
+                {tideByDay.map((dateArray)=>{
+                    let date = dateArray[0].date.split(" ")
+                    return(
+                        <div className="tide-by-day">
+                            <h4 className="tide-title">{date[0]}</h4>
+                            <div className="all-tide-day">
+                                {dateArray.map((tideObj, n)=>{
+                                    return(
+                                        <div key={n} className="extreme-values">
+                                            <h4>{tideObj.date.slice(6,13)}</h4>
+                                            <h4> <b>{tideObj.height} ft.</b></h4>
+                                            <h4>{tideObj.type}</h4>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+
+                        </div>
+                    )
+                })}
             </div>
             <div className="footer">
                 <div>
-                    <button id = "reportWaterLevel" className="report-button">Report Water Level</button>
-                </div>
-                <div>
-                    <button id = "reportGui" className="report-button" onClick={()=> changePopup("block")}>Show Popup</button>
+                    <button id = "reportWaterLevel" className="report-button" onClick={()=> changePopup("block")}>Report Water Level</button>
                 </div>
             </div>
         </div>
