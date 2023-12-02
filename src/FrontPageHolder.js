@@ -1,10 +1,10 @@
-import ExtremeList from "./comps/ExtremeList";
 import PrevAndUpcomingTide from "./comps/PrevAndUpcomingTide";
 import useFetch from "./useFetch"
 import { useCallback } from "react";
 import {app} from './firebase-config';
 import { getFirestore } from '@firebase/firestore'
 import {addDoc, collection} from 'firebase/firestore'
+import DailyExtremeList from "./comps/DailyExtremeList";
 
 const FrontPageHolder = () => {
     const db = getFirestore(app)
@@ -37,7 +37,6 @@ const FrontPageHolder = () => {
         const waterRef = collection(db, "waterOnBridge")
         await addDoc(waterRef, results)
         changePopup("none")
-        //hide buttons after/show success pop up
       }
 
     const alertResults = useCallback((data) => {
@@ -126,7 +125,6 @@ const FrontPageHolder = () => {
                 prevDate = tideDate[0]
             }
         })
-        console.log(tideByDay)
     }
     if(!predictionTideLoaded || !currentTideLoaded){ return <p>Loading...</p>}
     else return (
@@ -145,33 +143,8 @@ const FrontPageHolder = () => {
             <div className="prev-next-tide">
                 <PrevAndUpcomingTide tide = {previousTide} typeOfTide = {"Previous"}/>
                 <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"}/>
-            </div>            
-            {/* <div className="extreme-box">
-                <ExtremeList tideData = {highTide} typeOfTide = {"High"}/>
-                <ExtremeList tideData = {lowTide} typeOfTide = {"Low"}/>
-            </div> */}
-            <div className="extreme-box">
-                {tideByDay.map((dateArray)=>{
-                    let date = dateArray[0].date.split(" ")
-                    return(
-                        <div className="tide-by-day">
-                            <h4 className="tide-title">{date[0]}</h4>
-                            <div className="all-tide-day">
-                                {dateArray.map((tideObj, n)=>{
-                                    return(
-                                        <div key={n} className="extreme-values">
-                                            <h4>{tideObj.date.slice(6,13)}</h4>
-                                            <h4> <b>{tideObj.height} ft.</b></h4>
-                                            <h4>{tideObj.type}</h4>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-
-                        </div>
-                    )
-                })}
             </div>
+            <DailyExtremeList tideByDay = {tideByDay}/>
             <div className="footer">
                 <div>
                     <button id = "reportWaterLevel" className="report-button" onClick={()=> changePopup("block")}>Report Water Level</button>

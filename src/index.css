@@ -135,9 +135,10 @@ code {
 
 .pop-up{
   position: absolute;
+  color: white;
   width: 30%;
   height: 50vh;
-  background-color: gray;
+  background-color: #0056b8;
   display: none;
   margin-left: 2%;
   margin-top: 5vh;
