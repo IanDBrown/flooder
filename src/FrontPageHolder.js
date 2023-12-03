@@ -1,14 +1,9 @@
 import PrevAndUpcomingTide from "./comps/PrevAndUpcomingTide";
 import useFetch from "./useFetch"
-import { useCallback } from "react";
-import {app} from './firebase-config';
-import { getFirestore } from '@firebase/firestore'
-import {addDoc, collection} from 'firebase/firestore'
 import DailyExtremeList from "./comps/DailyExtremeList";
+import Popup from "./comps/Popup";
 
 const FrontPageHolder = () => {
-    const db = getFirestore(app)
-
     const date = new Date();
     let offset = -300;
     let yesterdaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
@@ -19,8 +14,6 @@ const FrontPageHolder = () => {
     + " " + date.getHours()
     + ":" + (date.getMinutes() < 10 ? "0"+ date.getMinutes() : date.getMinutes())
 
-    let highTide = []
-    let lowTide = []
     let upComingTide = []
     let previousTide = []
     let tideByDay = []
@@ -31,17 +24,7 @@ const FrontPageHolder = () => {
             givenDate.getUTCDate(), givenDate.getUTCHours(),
             givenDate.getUTCMinutes(), givenDate.getUTCSeconds());
         return now_utc
-    }
-
-    const writeDB = async (results) => {
-        const waterRef = collection(db, "waterOnBridge")
-        await addDoc(waterRef, results)
-        changePopup("none")
-      }
-
-    const alertResults = useCallback((data) => {
-        writeDB(data)
-      }, []);     
+    }  
 
     function closestExtreme(upComingExtreme, prevExtreme){
         let currentTimeUTC = UtcDate(datetime)
@@ -52,11 +35,6 @@ const FrontPageHolder = () => {
         }else{
             return upComingTide
         }
-    }
-
-    function waterDatabase(waterOnBridge){
-        let tideData = {"waterOnBridge": waterOnBridge, "date": datetime, "waterLevel": currentTideLevel.data[0].v, "closestTide": closestExtreme(upComingTide[3], previousTide[3])}
-        alertResults(tideData)
     }
 
     function changePopup(display){
@@ -97,15 +75,16 @@ const FrontPageHolder = () => {
                 definePreviousTide(tideData.predictions[index-1])
             } 
         }
+        
         let prevDate = ""
         let dateArray = []
+
         tideData.predictions.map((extreme, n) => {
             let tideObj = {}
             findUpcomingTide(extreme.t, extreme.type, extreme.v, n)
             tideObj["height"] = extreme.v
             tideObj["date"] = miltaryToTwelve(extreme.t)
             tideObj["type"] = extreme.type
-            extreme.type === "L" ? lowTide.push(tideObj) : highTide.push(tideObj)
 
             let tideDate = tideObj["date"].split(" ")
 
@@ -126,16 +105,12 @@ const FrontPageHolder = () => {
             }
         })
     }
+    
     if(!predictionTideLoaded || !currentTideLoaded){ return <p>Loading...</p>}
     else return (
         <div className="container">
             <div className="overlay"></div>
-            <div className="button-div pop-up">
-                <span className="close cursor" onClick={()=> changePopup("none")}>&times;</span>
-                <h2>Was there water on the bridge?</h2>
-                <button id = "YesWaterButton" onClick={()=> waterDatabase(true)}>Yes</button>
-                <button id = "NoWaterButton" onClick={()=> waterDatabase(false)}>No</button>
-            </div>
+            <Popup datetime = {datetime} waterLevel = {currentTideLevel.data[0].v} closestTide = {closestExtreme(upComingTide[3],previousTide[3])} />
             <div className="current-tide">
                 <h4 className="tide-title">Current Tide</h4>
                 <h2>{currentTideLevel.data[0].v} ft.</h2>
