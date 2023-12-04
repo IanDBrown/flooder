@@ -4,6 +4,7 @@ import DailyExtremeList from "./comps/DailyExtremeList";
 import Popup from "./comps/Popup";
 
 const FrontPageHolder = () => {
+    //Learning about reactNative to create Native version
     const date = new Date();
     let offset = -300;
     let yesterdaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
@@ -117,7 +118,7 @@ const FrontPageHolder = () => {
             </div>
             <div className="prev-next-tide">
                 <PrevAndUpcomingTide tide = {previousTide} typeOfTide = {"Previous"}/>
-                <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"}/>
+                <PrevAndUpcomingTide tide = {upComingTide} typeOfTide = {"Upcoming"} changePopup = {changePopup}/>
             </div>
             <DailyExtremeList tideByDay = {tideByDay}/>
             <div className="footer">
