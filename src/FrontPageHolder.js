@@ -4,7 +4,7 @@ import DailyExtremeList from "./comps/DailyExtremeList";
 import Popup from "./comps/Popup";
 
 const FrontPageHolder = () => {
-    //Learning about reactNative to create Native version
+    //Sick Day
     const date = new Date();
     let offset = -300;
     let yesterdaysDate =  new Date((date.getTime() -86400000) + offset*60*1000).toJSON().slice(0,10).replace(/-/g,'')
