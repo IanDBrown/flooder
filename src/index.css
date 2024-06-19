@@ -1,8 +1,12 @@
 body {
   overflow-x: hidden;
   margin: 0;
-  background-color: #126dd4;
-
+  background-image: linear-gradient(
+		#2a78d0,
+		#004492
+	);
+  color: white;
+  text-shadow: -1px -1px 0 #000;
 }
 
 .navbar, .footer{
@@ -26,6 +30,8 @@ body {
     height: 120px;
     margin-top: 5%;
     display: flex;
+    border-top: 1px;
+    background-color: #004492;
 }
 
 .footer div{
@@ -60,7 +66,11 @@ code {
   width: 50%;
   max-width: 488.5px;
   margin: auto;
-  background-color: #4b8fdd;
+  border: black solid .1px;
+  background-image: linear-gradient(
+		#2a78d0,
+		#004492
+	);
   border-radius: 5px;
 }
 
