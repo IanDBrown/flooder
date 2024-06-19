@@ -5,8 +5,8 @@ body {
 		#2a78d0,
 		#004492
 	);
-  color: white;
-  text-shadow: -1px -1px 0 #000;
+  color: black;
+  text-shadow: -.5px -.5px 0 #8b8b8b;
 }
 
 .navbar, .footer{

@@ -1,13 +1,13 @@
 import './index.css'
-import FrontPageHolder from './FrontPageHolder';
 import Header from './Header';
+import NewFrontPage from './NewFrontPage';
 
 const Homepage = () => {
     
     return ( 
         <div className="homepage">
             <Header/>
-            <FrontPageHolder/>
+            <NewFrontPage/>
         </div>
      );
 }
