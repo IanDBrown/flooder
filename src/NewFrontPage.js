@@ -2,6 +2,7 @@ import moment from 'moment';
 import useFetch from "./useFetch"
 import DailyExtremeList from './comps/DailyExtremeList';
 import PrevAndUpcomingTide from './comps/PrevAndUpcomingTide';
+import Wave from './Wave';
 
 const NewFrontPage = () => {
     let now = moment().subtract(1,"days").format("YYYYMMDD");
@@ -22,6 +23,11 @@ const NewFrontPage = () => {
                 }
             }
             return upcomingTideIndex
+        }
+
+        function differenceOfTideTime(tideData){
+            let tideTime = moment(tideData.t).fromNow();
+            return tideTime
         }
 
         function seperateExtremesByDay(tideData){
@@ -57,18 +63,23 @@ const NewFrontPage = () => {
         return (
         <div className="container">
             <div className="overlay"></div>
+            <Wave currentTide={currentTideLevel.data[0].v} />
+            
             <div className="current-tide">
-                <h4 className="tide-title">Current Tide</h4>
-                <h2>{currentTideLevel.data[0].v} ft.</h2>
+                <div className="current-tide-level">
+                    <h1>{currentTideLevel.data[0].v}'</h1>
+                    <h2>{currentTideLevel.data[0].type === "H" ? "↑" : "↓"}</h2>
+                </div>
+                <div className="next-tide-in">
+                    <h3>{currentTideLevel.data[0].type === "H" ? "Rising Tide" : "Receding Tide"}</h3>
+                    <h3>{currentTideLevel.data[0].type === "H" ? `High ${differenceOfTideTime(currentTideLevel.data[0])}` : `Low ${differenceOfTideTime(currentTideLevel.data[0])}`}</h3>
+                </div>
             </div>
                 <div className="prev-next-tide">
                     <PrevAndUpcomingTide tide = {tideData.predictions[findUpcomingTide(tideData) - 1]} typeOfTide = {"Previous"}/>
                     <PrevAndUpcomingTide tide = {tideData.predictions[findUpcomingTide(tideData)]} typeOfTide = {"Upcoming"}/>
                 </div>
             <DailyExtremeList tideByDay = {seperateExtremesByDay(tideData)}/>
-            <div className="footer">
-
-            </div>
         </div>
     );
     }

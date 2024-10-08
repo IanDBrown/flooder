@@ -1,12 +1,12 @@
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
   margin: 0;
-  background-image: linear-gradient(
-		#2a78d0,
-		#004492
-	);
-  color: black;
-  text-shadow: -.5px -.5px 0 #8b8b8b;
+  background-color: rgb(30,30,30);
+  
+  color: white;
+  font-family: "Inter", sans-serif;
+  /* text-shadow: 1px 1px 0 #000000; */
 }
 
 .navbar, .footer{
@@ -18,7 +18,7 @@ body {
   margin: 0 auto;
   top: 0px;
   left: 0px;
-  background-color: #0056b8;
+  background-color: #7DA6D5;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px black solid;
@@ -28,10 +28,9 @@ body {
 .footer{
     width: 100%;
     height: 120px;
-    margin-top: 5%;
     display: flex;
     border-top: 1px;
-    background-color: #004492;
+    background-color: #266dbf;
 }
 
 .footer div{
@@ -55,11 +54,9 @@ body {
   color: white;
   padding-top: 12px;
   font-size: 2em;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  margin-left: 0%;
+  padding-bottom: 1vh;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .container{
@@ -67,59 +64,84 @@ code {
   max-width: 488.5px;
   margin: auto;
   border: black solid .1px;
-  background-image: linear-gradient(
-		#2a78d0,
-		#004492
-	);
+  background-color:#7DA6D5;
   border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  max-height: 100vh;
 }
 
 .prev-next-tide{
-  display: flex;
+  margin-top: 4%;
+  height: 8vh;
+  position: relative;
+  z-index: 1;
 }
 
 .currentBox{
-  margin-top: 3%;
-  text-align: center;
+  display: flex;
+  height: 3vh;
+  text-align: left;
   padding-left: 5%;
   padding-right: 5%;
-  width: 40%;
+  width: 80%;
+  justify-content: center;
+}
+
+.current-box, p{
+  padding-left: 3%;
+}
+
+.Previous {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .current-tide{
-  width: 60%;
+  display:block;
+  width: 70%;
+  height: 22vh;
   margin: auto;
-  padding-top: 10px;
+  border-radius: 25px;
+  border: 1px black solid;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-top: 4%;
+  position: sticky;
 }
 
-.current-tide h2, h4{
-  text-align: center;
-  margin-bottom: 1%;
-  margin-top: 1%;
+.current-tide-level{
+  display: flex;
+  height: 12vh;
 }
 
-.current-tide h2{
-  font-weight: normal;
+.current-tide-level h1{
+  width: 20vw;
+  height: 6vh;
+  margin-left: 4vh;
+  margin-top: 2vh;
+  margin-right: 0vh;
+  font-size: 5em;
+  margin-bottom: 0vh;
 }
 
-.currentBox h2, h3{
-  margin-bottom: 1%;
-  margin-top: 1%;
-  font-weight: normal;
+.current-tide-level h2{
+  width: 10vw;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 6em;
+  margin-top: 2vh;
+  margin-bottom: 0vh;
 }
 
-.currentBox h2{
-  font-weight: normal;
+.next-tide-in{
+  margin-left: 6vw;
+
 }
 
-.currentBox h1{
-  margin: auto;
-  width: 75%;
-  margin-bottom: 2%;
-  margin-top: 5%;
-  font-size: 1.3em;
-  font-weight: bold;
+.next-tide-in, h3{
+  margin-top: 1vh;
+  margin-bottom: .5vh;
+  margin-left: 3.5vw;
 }
+
 .button-div{
   margin: auto;
   text-align: center;
@@ -191,13 +213,65 @@ code {
 }
 
 .extreme-values{
-  width: 50%;
+  width: 100%;
   padding-bottom: 5%;
+  display: flex;
 }
 
 .extreme-values h4{
   font-weight: normal;
   font-size: 1.2em;
+  width: 25%;
+  
+}
+
+.tide-time{
+  text-align: left;
+  padding-left: 2%;
+}
+
+.date-header{
+  display: block;
+  margin-left: 7%;
+  width: 86%;
+  border-bottom: 2px rgba(255, 255, 255, 0.6) solid;
+  margin-bottom: 3%;
+}
+
+.date-header h2{
+  font-size: 1em;
+  margin-bottom: 0%;
+  padding-top: 2vh;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.date-header h4{
+  font-size: 1.8em;
+  margin-top: 1vh;
+}
+
+.extreme-time{
+  padding-left: 5%;
+}
+
+.tide-level{
+  margin-left: 8%;
+  padding-left: 7%;
+}
+
+.extreme-value{
+  text-align: left;
+  padding-left: 13%;
+}
+
+.tide-type{
+  margin-left: 8%;
+  padding-left: 2%;
+}
+
+.extreme-type{
+  text-align: left;
+  padding-left: 8%;
 }
 
 h4{
@@ -208,29 +282,31 @@ h4{
 
 .extreme-box{
   position: relative;
-  overflow: visible;
+  overflow-y: scroll;
+  max-height: 60vh;
   padding-bottom: 5%;
+  padding-top: 40px;
+}
+
+.extreme-box::-webkit-scrollbar { 
+  display: none;
 }
 
 .tide-by-day{
   margin-top: 5%;
+  margin-left: 5%;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
 }
 
 .tide-title{
   display: block;
-  text-align: center;
   font-size: 1.6em;
-  border-bottom: 2px black solid;
-  margin-bottom: 5%;
-}
-
-.tide-by-day .tide-title{
-  width: 80%;
-  margin-left: 10%;
+  border-bottom: 2px rgba(255, 255, 255, 0.6) solid;
 }
 
 .all-tide-day{
-  display:flex;
   flex-wrap: wrap;
 }
 
@@ -321,5 +397,94 @@ h4{
 
   .prev-next-tide{
     display: flex;
+  }
+}
+
+.water-jar {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+/*   border-radius: 100%; */
+  overflow: hidden;
+  }
+.water-jar .water-filling {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  font-size: 64px;
+}
+.water-jar .water {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  background: #5085C4;
+}
+.water-jar .water_wave {
+  width: 200%;
+  position: absolute;
+  bottom: 100%;
+}
+.water-jar .water_wave_back {
+  right: 0;
+  fill: #627AAE;
+  -webkit-animation: wave-back 1.4s infinite linear;
+          animation: wave-back 1.4s infinite linear;
+}
+.water-jar .water_wave_front {
+  left: 0;
+  fill: #5085C4;
+  margin-bottom: -1px;
+  -webkit-animation: wave-front .7s infinite linear;
+          animation: wave-front .7s infinite linear;
+}
+
+@-webkit-keyframes wave-front {
+  100% {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@keyframes wave-front {
+  100% {
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+@-webkit-keyframes wave-back {
+  100% {
+    -webkit-transform: translate(50%, 0);
+            transform: translate(50%, 0);
+  }
+}
+@keyframes wave-back {
+  100% {
+    -webkit-transform: translate(50%, 0);
+            transform: translate(50%, 0);
   }
 }
