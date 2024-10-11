@@ -111,12 +111,13 @@ body {
 .current-tide-level{
   display: flex;
   height: 12vh;
+  width: 70%;
 }
 
 .current-tide-level h1{
   width: 20vw;
   height: 6vh;
-  margin-left: 4vh;
+  margin-left: 2vh;
   margin-top: 2vh;
   margin-right: 0vh;
   font-size: 5em;
@@ -127,19 +128,14 @@ body {
   width: 10vw;
   color: rgba(255, 255, 255, 0.8);
   font-size: 6em;
-  margin-top: 2vh;
+  margin-top: 3vh;
   margin-bottom: 0vh;
-}
-
-.next-tide-in{
-  margin-left: 6vw;
-
 }
 
 .next-tide-in, h3{
   margin-top: 1vh;
   margin-bottom: .5vh;
-  margin-left: 3.5vw;
+  margin-left: 3vw;
 }
 
 .button-div{
@@ -316,6 +312,17 @@ h4{
 }
 
 @media screen and (max-width: 600px){
+  .current-tide-level h1{
+    margin-left: 5%;
+    font-size: 4em;
+  }
+  .current-tide-level h2{
+    margin-left: 50%;
+
+  }
+  .next-tide-in{
+    margin-left: 10%;
+  }
   .navbar, .footer {
     width: 99%;
     border-left: 0px;
@@ -393,10 +400,6 @@ h4{
 
   h4{
     font-size: .9em;
-  }
-
-  .prev-next-tide{
-    display: flex;
   }
 }
 
